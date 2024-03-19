@@ -55,7 +55,7 @@ const Login = () => {
                     navigate("/admin/main");
                 }else{
                     alert("권한이 없습니다.")
-                    navigate("/login")
+                    navigate("/")
                     
                 }
                 
