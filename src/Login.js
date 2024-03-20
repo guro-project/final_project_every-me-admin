@@ -62,7 +62,8 @@ const Login = () => {
             } catch (error) {
                 console.log('localStorage 저장 오류:', error);
             }
-    
+
+            // onLoginHandler();
         } catch (error) {
             console.log(error);
         }
