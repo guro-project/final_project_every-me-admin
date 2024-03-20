@@ -1,16 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import DeleteAnno from "./DeleteAnno";
+import DeleteQna from "./DeleteQna";
 
-const AnnoDetail = () => {
-    const { noticeNo } = useParams();
+const QnaDetail = () => {
+    const { qnaNo } = useParams();
     const navigate = useNavigate();
     const [data, setData] = useState('');
 
     useEffect(() => {
         detailData();
-    }, [noticeNo]); // noticeNo가 변경될 때마다 detailData 함수를 다시 호출
+    }, [qnaNo]); // noticeNo가 변경될 때마다 detailData 함수를 다시 호출
 
     // console.log("넘버")
     // console.log(noticeNo);
@@ -20,7 +20,7 @@ const AnnoDetail = () => {
         // console.log(userToken)
         axios({
             method: 'GET',
-            url: `http://192.168.0.64:8080/readnotice/${noticeNo}`,
+            url: `http://192.168.0.64:8080/readqna/${qnaNo}`,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${userToken}`
@@ -36,8 +36,8 @@ const AnnoDetail = () => {
     }
 
     const handleItemClick = () => {
-        navigate(`/admin/update/${noticeNo}`);
-        console.log(noticeNo)
+        navigate(`/admin/updateqna/${qnaNo}`);
+        console.log(qnaNo)
     }
 
     // 밀리초로 표시된 날짜를 원하는 형식으로 변환하는 함수
@@ -52,15 +52,14 @@ const AnnoDetail = () => {
     return (
         <>
             <div>
-                번호 : {data.noticeNo}
-                제목 : {data.noticeTitle}
-                날짜 : {formatDate(data.noticeRegistDate)}<br />
-                내용 : {data.noticeContent}
+                제목 : {data.qnaTitle}
+                날짜 : {formatDate(data.qnaRegistDate)}<br />
+                내용 : {data.qnaContent}
             </div>
             <button onClick={handleItemClick}>수정</button>
-            <DeleteAnno />
+            <DeleteQna />
         </>
     )
 }
 
-export default AnnoDetail;
+export default QnaDetail;

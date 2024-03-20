@@ -1,16 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AnnoDetail from "./AnnoDetail";
 
 const AnnoMain = () => {
     const navigate = useNavigate();
-    const [noticeNo, setNoticeNo] = useState('');
-    const [noticeTitle, setNoticeTitle] = useState('');
-    const [noticeContent, setNoticeContent] = useState('');
-    const [noticeDate, setNoticeDate] = useState('');
     const [data, setData] = useState('');
-    const [selectNoticeNo, setSelectNoticeNo] = useState('');
 
     useEffect(() => {
         fetchData();

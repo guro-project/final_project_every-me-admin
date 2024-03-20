@@ -2,43 +2,43 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-const UpdateAnno = () => {
+const UpdateQna = () => {
 
-    const { noticeNo } = useParams();
+    const { qnaNo } = useParams();
     const navigate = useNavigate();
-    const [noticeTitle,setNoticeTitle] = useState('');
-    const [noticeContent,setNoticeContent] = useState('');
+    const [qnaTitle,setQnaTitle] = useState('');
+    const [qnaContent,setQnaContent] = useState('');
 
 
     // console.log("넘버")
     // console.log(noticeNo);
 
     const onChangeTitleHandler = (event) => {
-        setNoticeTitle(event.target.value);
+        setQnaTitle(event.target.value);
     }
     const onChangeContentHandler = (event) => {
-        setNoticeContent(event.target.value);
+        setQnaContent(event.target.value);
     }
 
     const onUpdateHandler = async () => {
         const userToken = localStorage.getItem('userToken');
-        if (!noticeTitle || !noticeContent) {
+        if (!qnaTitle || !qnaContent) {
             alert('제목과 내용을 입력해주세요')
             return;
         }
     
-        let noticeData = {
-            'noticeTitle': noticeTitle,
-            'noticeContent': noticeContent
+        let qnaData = {
+            'qnaTitle': qnaTitle,
+            'qnaContent': qnaContent
         };
-        console.log(noticeData)
+        console.log(qnaData)
 
-        const json = JSON.stringify(noticeData);
+        const json = JSON.stringify(qnaData);
     
         try {
                 await axios({
                 method: 'PUT',
-                url: `http://192.168.0.64:8080/updatenotice/${noticeNo}`,
+                url: `http://192.168.0.64:8080/updateqna/${qnaNo}`,
                 data: json,
                 headers: {
                     'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const UpdateAnno = () => {
     
     
             try {
-                navigate("/admin/annomain");
+                navigate("/admin/qnamain");
             } catch (error) {
                 console.log('localStorage 저장 오류:', error);
             }
@@ -64,10 +64,10 @@ const UpdateAnno = () => {
         <>
             <div>
                 <label>제목 : </label>
-                <input type="text" name="noticeTitle" onChange={onChangeTitleHandler} />
+                <input type="text" name="qnaTitle" onChange={onChangeTitleHandler} />
                 <br />
                 <label>내용 : </label>
-                <input type="text" name="noticeContent" onChange={onChangeContentHandler} />
+                <input type="text" name="qnaContent" onChange={onChangeContentHandler} />
                 <button onClick={onUpdateHandler}>등록</button>
                 
             </div>
@@ -75,4 +75,4 @@ const UpdateAnno = () => {
     )
 }
 
-export default UpdateAnno;
+export default UpdateQna;
