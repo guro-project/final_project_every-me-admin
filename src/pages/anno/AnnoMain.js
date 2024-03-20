@@ -17,19 +17,19 @@ const AnnoMain = () => {
     }, []);
 
     const fetchData = async () => {
-        // const userToken = localStorage.getItem('userToken');
+        const userToken = localStorage.getItem('userToken');
         // console.log(userToken)
         axios({
             method: 'GET',
             url: `http://192.168.0.64:8080/readnotice`,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer eyJkYXRlIjoxNzEwODAxNDYzNDEzLCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJSb2xlIjoiQURNSU4iLCJzdWIiOiJFdmVyeU1lIHRva2VuIDogNCIsImV4cCI6MTcxMTY2NTQ2MywidXNlcklkIjoiYWRtaW5AYWRtaW4uY29tIn0.bBr6hosXPYl7NpHYZfYDhDU5AegsRvjOVaUeuqiiRh8`
-                // 'Authorization': `Bearer ${userToken}`
+                'Authorization': `Bearer ${userToken}`
             }
         })
             .then(response => {
                 setData(response.data);
+                console.log("데이터")
                 console.log(response.data)
             })
             .catch(error => {
@@ -39,8 +39,6 @@ const AnnoMain = () => {
 
     const renderData = () => {
         if (!data) return null; // 데이터가 없으면 아무것도 렌더링하지 않음
-        console.log("데이터")
-        console.log(data.noticeRegistDate)
 
         return (
             <ul>

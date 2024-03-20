@@ -15,11 +15,13 @@ const RegistAnno = () => {
     }
 
     const onUploadHandler = async () => {
+        
         if (!noticeTitle || !noticeContent) {
             alert('제목과 내용을 입력해주세요')
             return;
         }
     
+        const userToken = localStorage.getItem('userToken');
         let noticeData = {
             'noticeTitle': noticeTitle,
             'noticeContent': noticeContent
@@ -35,13 +37,13 @@ const RegistAnno = () => {
                 data: json,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer eyJkYXRlIjoxNzEwODAxNDYzNDEzLCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJSb2xlIjoiQURNSU4iLCJzdWIiOiJFdmVyeU1lIHRva2VuIDogNCIsImV4cCI6MTcxMTY2NTQ2MywidXNlcklkIjoiYWRtaW5AYWRtaW4uY29tIn0.bBr6hosXPYl7NpHYZfYDhDU5AegsRvjOVaUeuqiiRh8`
+                    'Authorization': `Bearer ${userToken}`
                 }
             });
     
     
             try {
-                localStorage.setItem('userToken', response.data.userToken);
+                console.log("토큰")
                 navigate("/admin/annomain");
             } catch (error) {
                 console.log('localStorage 저장 오류:', error);

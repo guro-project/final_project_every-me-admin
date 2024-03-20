@@ -17,14 +17,14 @@ const AnnoDetail = () => {
     // console.log(noticeNo);
 
     const detailData = async () => {
-        // const userToken = localStorage.getItem('userToken');
+        const userToken = localStorage.getItem('userToken');
         // console.log(userToken)
         axios({
             method: 'GET',
             url: `http://192.168.0.64:8080/readnotice/${noticeNo}`,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer eyJkYXRlIjoxNzEwODAxNDYzNDEzLCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJSb2xlIjoiQURNSU4iLCJzdWIiOiJFdmVyeU1lIHRva2VuIDogNCIsImV4cCI6MTcxMTY2NTQ2MywidXNlcklkIjoiYWRtaW5AYWRtaW4uY29tIn0.bBr6hosXPYl7NpHYZfYDhDU5AegsRvjOVaUeuqiiRh8`
+                'Authorization': `Bearer ${userToken}`
             }
         })
             .then(response => {

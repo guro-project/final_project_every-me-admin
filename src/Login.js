@@ -23,6 +23,8 @@ const Login = () => {
         setUserPass(event.target.value);
     }
 
+    let loginCounter = 0;
+
     const onLoginHandler = async () => {
         if (!userId || !userPass) {
             alert('아이디와 비밀번호를 입력해주세요')
@@ -46,24 +48,41 @@ const Login = () => {
                     'Content-Type': 'application/json'
                 }
             });
-    
-    
+
+            loginCounter++;
+
+            console.log(response.data.userInfo.userToken);
+
             try {
-                localStorage.setItem('userToken', response.data.userToken);
-                console.log(response.data.message)
-                if(response.data.message==="로그인 성공!"){
-                    navigate("/admin/main");
-                }else{
-                    alert("권한이 없습니다.")
-                    navigate("/")
-                    
-                }
-                
+                localStorage.setItem('userToken', response.data.userInfo.userToken);
             } catch (error) {
-                console.log('localStorage 저장 오류:', error);
+                console.log('AsyncStorage 저장 오류:', error);
             }
 
-            // onLoginHandler();
+            if (loginCounter === 2) {
+                if (response.data.message==="로그인 성공!") {
+                    navigate('/admin/main');
+                } else {
+                    navigate('/');
+                }
+                return; // 함수 종료
+            }
+
+            // try {
+            //     
+            //     console.log(response.data.message)
+            //     if(response.data.message==="로그인 성공!"){
+            //         navigate("/admin/main");
+            //     }else{
+            //         alert("권한이 없습니다.")
+            //         navigate("/")
+            //     }
+                
+            // } catch (error) {
+            //     console.log('localStorage 저장 오류:', error);
+            // }
+
+            onLoginHandler();
         } catch (error) {
             console.log(error);
         }
