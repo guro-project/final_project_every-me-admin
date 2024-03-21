@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Anno.css";
 
 const AnnoMain = () => {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ const AnnoMain = () => {
         // console.log(userToken)
         axios({
             method: 'GET',
-            url: `http:/192.168.0.64:8080/readnotice`,
+            url: `http://192.168.0.64:8080/readnotice`,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${userToken}`
@@ -35,10 +36,12 @@ const AnnoMain = () => {
         if (!data) return null; // 데이터가 없으면 아무것도 렌더링하지 않음
 
         return (
-            <ul>
+            <ul className="notice-list">
                 {data.map(item => (
-                    <li key={item.noticeNo} onClick={() => handleItemClick(item)}>
-                        <label>번호 : {item.noticeNo} 제목 : {item.noticeTitle} 날짜 : {formatDate(item.noticeRegistDate)}</label>
+                    <li key={item.noticeNo} className="notice-item" onClick={() => handleItemClick(item)}>
+                        <label>번호: {item.noticeNo}</label><br />
+                        <label>제목: {item.noticeTitle}</label><br />
+                        <span>날짜: {formatDate(item.noticeRegistDate)}</span>
                     </li>
                 ))}
             </ul>
@@ -69,7 +72,7 @@ const AnnoMain = () => {
     return (
         <div>
             <h1>공지사항 메인페이지</h1>
-            <button onClick={uplodaNoticePage}>공지사항 업로드</button>
+            <button className="upload-button" onClick={uplodaNoticePage}>공지사항 업로드</button>
             {renderData()}
         </div>
     );

@@ -1,0 +1,50 @@
+/* 공지사항 목록 스타일 */
+.notice-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto; /* 중앙 정렬 */
+    width: 90%; /* 너비 조정 */
+}
+
+.notice-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.notice-item:hover {
+    background-color: #e0e0e0;
+}
+
+.notice-item label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.notice-item span {
+    color: #666;
+}
+
+/* 공지사항 업로드 버튼 스타일 */
+.upload-button {
+    display: block;
+    width: auto; /* 기본 너비 설정 */
+    text-align: right;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+    background-color: #0056b3;
+    color: #fff;
+    text-decoration: none;
+}

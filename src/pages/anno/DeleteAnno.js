@@ -26,7 +26,7 @@ const DeleteAnno = () => {
 
     return (
         <button onClick={handleDelete}>
-            <h3 style={{color:'red'}}>삭제</h3>
+            <h3>삭제</h3>
         </button>
     );
 }

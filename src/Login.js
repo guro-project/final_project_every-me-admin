@@ -1,20 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
+import "./Login.css";
 
 const Login = () => {
     const navigate = useNavigate();
-    // const dispatch = useDispatch();
-    // const result = useSelector(state => state.userReducer);
-    // const loginStatus = !!localStorage.getItem("isLogin");
-    const [userId,setUserId] = useState('');
-    const [userPass,setUserPass] = useState('');
-    
-    // const [loginInfo,setLoginInfo] = useState({
-    //     userId: "",
-    //     userPass: ""
-    // });
+    const [userId, setUserId] = useState('');
+    const [userPass, setUserPass] = useState('');
 
     const onChangeIdHandler = (event) => {
         setUserId(event.target.value);
@@ -30,7 +22,7 @@ const Login = () => {
             alert('아이디와 비밀번호를 입력해주세요')
             return;
         }
-    
+
         let loginData = {
             'id': userId,
             'pass': userPass
@@ -38,7 +30,7 @@ const Login = () => {
         console.log(loginData)
 
         const json = JSON.stringify(loginData);
-    
+
         try {
             const response = await axios({
                 method: 'POST',
@@ -60,7 +52,7 @@ const Login = () => {
             }
 
             if (loginCounter === 2) {
-                if (response.data.message==="로그인 성공!") {
+                if (response.data.message === "로그인 성공!") {
                     navigate('/admin/main');
                 } else {
                     navigate('/');
@@ -68,19 +60,6 @@ const Login = () => {
                 return; // 함수 종료
             }
 
-            // try {
-            //     
-            //     console.log(response.data.message)
-            //     if(response.data.message==="로그인 성공!"){
-            //         navigate("/admin/main");
-            //     }else{
-            //         alert("권한이 없습니다.")
-            //         navigate("/")
-            //     }
-                
-            // } catch (error) {
-            //     console.log('localStorage 저장 오류:', error);
-            // }
 
             onLoginHandler();
         } catch (error) {
@@ -88,17 +67,14 @@ const Login = () => {
         }
     }
 
-    return(
-        <>
-            <div>
-                <label>id : </label>
-                <input type="text" name="userId" onChange={onChangeIdHandler} />
-                <br />
-                <label>password : </label>
-                <input type="password" name="userPass" onChange={onChangePassHandler} />
-                <button onClick={onLoginHandler}>로그인</button>
-            </div>
-        </>
+    return (
+        <div className="login-container">
+            <h1>EveryMe</h1>
+            <input type="text" name="userId" placeholder="id" onChange={onChangeIdHandler} />
+            <br />
+            <input type="password" name="userPass" placeholder="password" onChange={onChangePassHandler} />
+            <button onClick={onLoginHandler}>로그인</button>
+        </div>
     )
 }
 
