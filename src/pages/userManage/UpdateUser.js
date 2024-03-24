@@ -20,7 +20,7 @@ const UpdateUser = ({ userNo }) => {
         try {
             await axios({
                 method: 'PUT',
-                url: `http://192.168.0.64:8080/updateuser/${userNo}`,
+                url: `http://172.30.1.19:8080/updateuser/${userNo}`,
                 data: manageData,
                 headers: {
                     'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ const UpdateUser = ({ userNo }) => {
         <>
             상태변경 : <StateCheck options={stateOption} value={userState} onChange={handleStateChange} />
             권한변경 : <StateCheck options={roleOption} value={role} onChange={handleRoleChange} />
-            <button onClick={handleStatusChange}>수정</button>
+            <button onClick={handleStatusChange} style={{borderRadius:'5px', color:'blue', backgroundColor:'white'}}>수정</button>
         </>
     );
 }

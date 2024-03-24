@@ -1,0 +1,49 @@
+.qna-container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .qna-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .qna-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .qna-item {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .qna-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .qna-title {
+    font-weight: bold;
+  }
+  
+  .qna-date {
+    font-style: italic;
+  }
+  
+  .qna-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .qna-button:hover {
+    background-color: #0056b3;
+  }
+  

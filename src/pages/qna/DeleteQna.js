@@ -9,7 +9,7 @@ const DeleteQna = () => {
         const userToken = localStorage.getItem('userToken');
         axios({
             method: 'DELETE',
-            url: `http://192.168.0.64:8080/removeqna/${qnaNo}`,
+            url: `http://172.30.1.19:8080/removeqna/${qnaNo}`,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${userToken}`
@@ -25,8 +25,8 @@ const DeleteQna = () => {
     }
 
     return (
-        <button onClick={handleDelete}>
-            <h3 style={{color:'red'}}>삭제</h3>
+        <button onClick={handleDelete} style={{backgroundColor:'red', color:'white', borderRadius:'5px',border:'none',cursor: 'pointer'}}> 
+            <h3>삭제</h3>
         </button>
     );
 }

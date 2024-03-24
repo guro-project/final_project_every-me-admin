@@ -34,7 +34,7 @@ const Login = () => {
         try {
             const response = await axios({
                 method: 'POST',
-                url: 'http://192.168.0.64:8080/login',
+                url: 'http://172.30.1.79:8080/login',
                 data: json,
                 headers: {
                     'Content-Type': 'application/json'

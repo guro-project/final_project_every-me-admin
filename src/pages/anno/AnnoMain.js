@@ -16,7 +16,7 @@ const AnnoMain = () => {
         // console.log(userToken)
         axios({
             method: 'GET',
-            url: `http://192.168.0.64:8080/readnotice`,
+            url: `http://172.30.1.19:8080/readnotice`,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${userToken}`
@@ -67,13 +67,18 @@ const AnnoMain = () => {
         console.log("공지사항 업로드페이지")
     }
 
+    const home = () => {
+        navigate("/admin/main")
+    }
+
     // 공지사항 메인페이지에는 공지사항등록버튼, 공지사항 리스트 번호,제목,날짜만 메인페이지 홈버튼, 뒤로가기버튼
 
     return (
         <div>
-            <h1>공지사항 메인페이지</h1>
-            <button className="upload-button" onClick={uplodaNoticePage}>공지사항 업로드</button>
+            <h1>공지사항</h1>
+            <button className="upload-button" onClick={uplodaNoticePage}>글쓰기</button>
             {renderData()}
+            <button className="upload-button" onClick={home}>홈</button>
         </div>
     );
 };

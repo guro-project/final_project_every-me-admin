@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./RegistAnno.css";
 
 const RegistAnno = () => {
     const navigate = useNavigate();
@@ -33,7 +34,7 @@ const RegistAnno = () => {
         try {
             await axios({
                 method: 'POST',
-                url: 'http://192.168.0.64:8080/uploadnotice',
+                url: 'http://172.30.1.19:8080/uploadnotice',
                 data: json,
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,22 +55,19 @@ const RegistAnno = () => {
         }
     }
 
-    
-
     return(
         <>
-            <div>
+            <div className="container">
+                <h2>공지사항</h2>
                 <label>제목 : </label>
                 <input type="text" name="noticeTitle" onChange={onChangeTitleHandler} />
                 <br />
                 <label>내용 : </label>
-                <input type="text" name="noticeContent" onChange={onChangeContentHandler} />
-                <button onClick={onUploadHandler}>등록</button>
-                
+                <textarea name="noticeContent" onChange={onChangeContentHandler} />
+                <button className="btn" onClick={onUploadHandler}>등록</button>
             </div>
         </>
     )
-
 }
 
 export default RegistAnno;

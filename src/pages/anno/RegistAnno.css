@@ -1,0 +1,30 @@
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.container label {
+    font-weight: bold;
+}
+
+.container textarea {
+    width: 100%;
+    height: 400px; /* 내용 입력란을 크게 만듦 */
+    margin-bottom: 20px;
+}
+
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}

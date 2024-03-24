@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import "./RegistAnno.css";
 
 const UpdateAnno = () => {
 
@@ -38,7 +39,7 @@ const UpdateAnno = () => {
         try {
                 await axios({
                 method: 'PUT',
-                url: `http://192.168.0.64:8080/updatenotice/${noticeNo}`,
+                url: `http://172.30.1.19:8080/updatenotice/${noticeNo}`,
                 data: json,
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,14 +63,14 @@ const UpdateAnno = () => {
 
     return(
         <>
-            <div>
+            <div className="container">
+                <h2>공지사항</h2>
                 <label>제목 : </label>
                 <input type="text" name="noticeTitle" onChange={onChangeTitleHandler} />
                 <br />
                 <label>내용 : </label>
-                <input type="text" name="noticeContent" onChange={onChangeContentHandler} />
-                <button onClick={onUpdateHandler}>등록</button>
-                
+                <textarea name="noticeContent" onChange={onChangeContentHandler} />
+                <button className="btn" onClick={onUpdateHandler}>수정</button>
             </div>
         </>
     )

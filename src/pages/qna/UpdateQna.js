@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import "./RegistQna.css"; // CSS 파일 import
 
 const UpdateQna = () => {
 
@@ -38,7 +39,7 @@ const UpdateQna = () => {
         try {
                 await axios({
                 method: 'PUT',
-                url: `http://192.168.0.64:8080/updateqna/${qnaNo}`,
+                url: `http://172.30.1.19:8080/updateqna/${qnaNo}`,
                 data: json,
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,15 +63,14 @@ const UpdateQna = () => {
 
     return(
         <>
-            <div>
-                <label>제목 : </label>
-                <input type="text" name="qnaTitle" onChange={onChangeTitleHandler} />
-                <br />
-                <label>내용 : </label>
-                <input type="text" name="qnaContent" onChange={onChangeContentHandler} />
-                <button onClick={onUpdateHandler}>등록</button>
-                
-            </div>
+            <div className="regist-qna-container">
+            <label className="regist-qna-label">질문 : </label>
+            <input className="regist-qna-input" type="text" name="qnaTitle" onChange={onChangeTitleHandler} />
+            <br />
+            <label className="regist-qna-label">답 : </label>
+            <input className="regist-qna-input" type="text" name="qnaContent" onChange={onChangeContentHandler} />
+            <button className="regist-qna-button" onClick={onUpdateHandler}>수정</button>
+        </div>
         </>
     )
 }

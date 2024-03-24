@@ -9,7 +9,7 @@ const DeleteAnno = () => {
         const userToken = localStorage.getItem('userToken');
         axios({
             method: 'DELETE',
-            url: `http://192.168.0.64:8080/removenotice/${noticeNo}`,
+            url: `http://172.30.1.19:8080/removenotice/${noticeNo}`,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${userToken}`
@@ -25,7 +25,7 @@ const DeleteAnno = () => {
     }
 
     return (
-        <button onClick={handleDelete}>
+        <button onClick={handleDelete} style={{backgroundColor:'red', color:'white', borderRadius:'5px',border:'none',cursor: 'pointer'}}>
             <h3>삭제</h3>
         </button>
     );

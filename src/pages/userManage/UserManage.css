@@ -1,0 +1,10 @@
+.user-list {
+    background-color: skyblue;
+    padding: 10px;
+  }
+  
+  .user-item {
+    border-bottom: 1px solid white;
+    padding: 10px;
+  }
+  

@@ -19,7 +19,7 @@ const UserManage = () => {
         const userToken = localStorage.getItem('userToken');
         axios({
             method: 'GET',
-            url: `http://192.168.0.64:8080/viewusers`,
+            url: `http://172.30.1.19:8080/viewusers`,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${userToken}`
@@ -40,7 +40,7 @@ const UserManage = () => {
         return (
             <ul>
                 {data.map(item => (
-                    <li key={item.userNo}>
+                    <li key={item.userNo} style={{backgroundColor:'#E0F2F7', borderBottom:'1px solid white'}}>
                         <label>{item.userNo} {item.userId} 상태 : {item.userState} 권한 : {item.role}  </label>
                         <UpdateUser userNo={item.userNo}/>
                     </li>

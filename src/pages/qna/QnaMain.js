@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./QnaMain.css"; // CSS 파일 import
 
 const QnaMain = () => {
     const navigate = useNavigate();
@@ -12,42 +13,24 @@ const QnaMain = () => {
 
     const fetchData = async () => {
         const userToken = localStorage.getItem('userToken');
-        // console.log(userToken)
         axios({
             method: 'GET',
-            url: `http://192.168.0.64:8080/readqna`,
+            url: `http://172.30.1.19:8080/readqna`,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${userToken}`
             }
         })
-            .then(response => {
-                setData(response.data);
-                console.log("데이터")
-                console.log(response.data)
-            })
-            .catch(error => {
-                console.error('조회 에러 : ' + error);
-            });
+        .then(response => {
+            setData(response.data);
+        })
+        .catch(error => {
+            console.error('조회 에러 : ' + error);
+        });
     }
 
-    const renderData = () => {
-        if (!data) return null; // 데이터가 없으면 아무것도 렌더링하지 않음
-
-        return (
-            <ul>
-                {data.map(item => (
-                    <li key={item.qnaNo} onClick={() => handleItemClick(item)}>
-                        <label>제목 : {item.qnaTitle} 날짜 : {formatDate(item.qnaRegistDate)}</label>
-                    </li>
-                ))}
-            </ul>
-        );
-    }
-
-    // 밀리초로 표시된 날짜를 원하는 형식으로 변환하는 함수
     const formatDate = (milliseconds) => {
-        const date = new Date(milliseconds); // 밀리초로부터 Date 객체 생성
+        const date = new Date(milliseconds);
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const day = String(date.getDate()).padStart(2, '0');
@@ -55,7 +38,6 @@ const QnaMain = () => {
     }
 
     const handleItemClick = (item) => {
-        console.log("Clicked item:", item);
         navigate(`/admin/qna/${item.qnaNo}`);
     }
 
@@ -63,12 +45,23 @@ const QnaMain = () => {
         navigate("/admin/uploadqna")
     }
 
+    const home = () => {
+        navigate("/admin/main")
+    }
 
     return (
-        <div>
-            <h1>질문 메인페이지</h1>
-            <button onClick={uplodaQnaPage}>질문 업로드</button>
-            {renderData()}
+        <div className="qna-container">
+            <h1 className="qna-header">질문 메인페이지</h1>
+            <button className="qna-button" onClick={uplodaQnaPage}>질문 업로드</button>
+            <ul className="qna-list">
+                {data && data.map(item => (
+                    <li key={item.qnaNo} className="qna-item" onClick={() => handleItemClick(item)}>
+                        <span className="qna-title">질문: {item.qnaTitle}</span>
+                        {/* <span className="qna-date">날짜: {formatDate(item.qnaRegistDate)}</span> */}
+                    </li>
+                ))}
+            </ul>
+            <button className="upload-button" onClick={home}>홈</button>
         </div>
     );
 };
